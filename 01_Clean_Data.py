@@ -2,11 +2,12 @@
 import sys
 
 # This program filters only the fields of interest from the input file into the output file and removes data that was a part of a pan-cancer analysis
+# A separate SNP list is also made for easy downstream analysis
 # Duplicate SNPs are kept as they could be reported in multiple publications
 
 # Specify user input with usage statement
 if len(sys.argv)!=4:
-	print('This program filters only the fields of interest in the output file\nUsage: 01_Clean_Data.py input_file_name output_file_name snp_output_name\n01_Clean_Data.py BTC_GWAS.tsv BTC_GWAS_Cleaned.tsv BTC_SNP_List.txt')
+	print('This program filters only the fields of interest in the output file and makes a list of SNPs\nUsage: 01_Clean_Data.py input_file_name output_file_name snp_output_name\n01_Clean_Data.py BTC_GWAS.tsv BTC_GWAS_Cleaned.tsv BTC_SNP_List.txt')
 	sys.exit()
 else:
 	InputfileName=sys.argv[1]
@@ -16,8 +17,8 @@ else:
 # Initialize dictionary with the fields of interest as the header
 SNPdict: dict={
 	"SNPS": ["DISEASE/TRAIT", 
-	         "MAPPED_TRAIT", 
-	         "P-VALUE", 
+			 "MAPPED_TRAIT", 
+			 "P-VALUE", 
 			 "CHR_ID", 
 			 "CHR_POS", 
 			 "REPORTED GENE(S)", 
